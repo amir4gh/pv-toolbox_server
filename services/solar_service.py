@@ -14,7 +14,7 @@ def calculate_solar_irradiance(latitude, longitude, date):
         return {"error": "Could not determine timezone."}
 
     # Generate hourly timestamps for the given date
-    times = pd.date_range(date, freq="1H", periods=24, tz=tz)
+    times = pd.date_range(date, freq="1h", periods=24, tz=tz)
 
     # Get solar position
     solpos = pvlib.solarposition.get_solarposition(times, latitude, longitude)
