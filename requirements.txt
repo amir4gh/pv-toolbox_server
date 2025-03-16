@@ -1,0 +1,6 @@
+flask
+waitress
+pvlib
+pandas
+timezonefinder
+gunicorn
