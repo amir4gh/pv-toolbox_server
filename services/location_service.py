@@ -33,6 +33,39 @@ def get_lat_lon(city, country):
         return {"error": f"Nominatim API error: {str(e)}"}
 
 
+def get_location_v2(city, country):
+    """
+    Get latitude, longitude, timezone, and current date-time from city & country.
+    """
+    location_data = get_lat_lon(city, country)
+
+    if "error" in location_data:
+        return location_data
+
+    latitude = location_data["latitude"]
+    longitude = location_data["longitude"]
+
+    # Get timezone
+    timezone = get_timezone(latitude, longitude)
+    if not timezone:
+        return {"error": "Could not determine timezone."}
+
+    # Get current date & time in that timezone
+    local_time = datetime.now(pytz.timezone(timezone))
+    current_date = local_time.strftime("%Y-%m-%d")
+    current_time = local_time.strftime("%H:%M:%S")
+
+    location_data.update(
+        {
+            "timezone": timezone,
+            "current_date": current_date,
+            "current_time": current_time,
+        }
+    )
+
+    return location_data
+
+
 def get_time_for_location(latitude, longitude):
     """
     Get the current date and time for a given latitude & longitude using timezonefinder.
