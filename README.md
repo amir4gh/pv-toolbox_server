@@ -28,3 +28,12 @@
 "longitude": 4.1809702,
 "timezone": "Africa/Algiers"
 }
+
+[GET]/time?latitude=48.8566&longitude=2.3522
+{
+"current_date": "2025-03-16",
+"current_time": "08:32:03",
+"latitude": 48.8566,
+"longitude": 2.3522,
+"timezone": "Europe/Paris"
+}
