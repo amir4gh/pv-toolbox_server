@@ -4,3 +4,4 @@ pvlib
 pandas
 timezonefinder
 gunicorn
+requests
